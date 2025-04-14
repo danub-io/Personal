@@ -3,156 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - Landing Page</title>
-    <meta name="description" content="">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <title>Gestão de Pessoas para Alta Performance | Danúbio Coelho</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados adicionais, se necessário */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Efeito suave de scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilo para botões com gradiente (exemplo) */
+        .btn-gradient {
+            background-image: linear-gradient(to right, #3b82f6, #1e40af); /* Azul */
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background-image: linear-gradient(to right, #1e40af, #3b82f6);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-    <header class="hero">
-        <div class="container hero__container">
-            <div class="hero__text">
-                <h1 class="hero__title"></h1>
-                <p class="hero__subtitle"></p>
-                <a href="#oferta" class="button button--primary hero__cta js-smooth-scroll">Quero Meu E-book Agora!</a>
-                <span class="hero__cta-subtext">[Opcional: Mencione gratuidade, desconto ou garantia aqui]</span>
-            </div>
-            <div class="hero__image">
-                <img src="images/ebook-cover-mockup.png" alt="Capa do E-book" loading="eager">
-            </div>
-        </div>
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-700">MBA lite</div>
+            <a href="#comprar" class="hidden md:inline-block px-6 py-2 text-white font-semibold rounded-md btn-gradient">
+                Quero Meu E-book Agora
+            </a>
+        </nav>
     </header>
 
     <main>
-        <section class="problem section">
-            <div class="container problem__container">
-                <h2 class="section__title">Você se identifica com?</h2>
-                <p class="section__text"> [Descreva a dor ou o desafio que seu público enfrenta e com o qual o e-book ajuda. Use linguagem empática. Conecte-se com a realidade deles.]</p>
-                <p class="section__text">[Continue a descrição ou apresente um cenário comum onde o problema se manifesta.]</p>
+        <section id="hero" class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 md:pr-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                    Gestão de Pessoas para Alta Performance: Desvende o Potencial Humano!
+                </h1>
+                <p class="text-lg text-gray-600 mb-6">
+                    Descubra como transformar o potencial latente da sua equipe em resultados extraordinários. Aprenda a construir ambientes onde os indivíduos floresçam, inovem e alcancem a alta performance de forma sustentável.
+                </p>
+                <a href="#comprar" class="inline-block px-8 py-4 text-lg text-white font-bold rounded-lg btn-gradient shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300">
+                    Sim, Quero Resultados Extraordinários!
+                </a>
+                <p class="text-sm text-gray-500 mt-4">Compra segura | Acesso imediato ao PDF</p>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img
+                    src="https://placehold.co/600x900/3B82F6/FFFFFF?text=Gestão+de+Pessoas+Alta+Performance" /* Placeholder - Substituir pela URL da capa real */
+                    alt="Capa do E-book Gestão de Pessoas para Alta Performance"
+                    class="rounded-lg shadow-2xl max-w-xs md:max-w-sm transform transition duration-500 hover:scale-105"
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x900/cccccc/ffffff?text=Capa+Indisponível';"
+                >
             </div>
         </section>
 
-        <section class="solution section section--highlight">
-            <div class="container solution__container">
-                <h2 class="section__title">Imagine</h2>
-                <p class="section__text">[Apresente o e-book como a solução. Descreva como ele ajuda a superar o problema mencionado ou a alcançar o resultado desejado.]</p>
-                <div class="benefits__grid">
-                    <div class="benefit__item">
-                        <img src="images/icon-benefit-1.svg" alt="Ícone Benefício 1" class="benefit__icon">
-                        <h3 class="benefit__title">Benefício Chave 1</h3>
-                        <p class="benefit__text">[Descreva o primeiro grande benefício que o leitor terá.]</p>
+        <section id="beneficios" class="bg-gray-100 py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">O Que Você Vai Dominar Com Este Guia?</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+                    Um guia prático e direto ao ponto para você se tornar um arquiteto de equipes de alta performance, com ferramentas, frameworks e exemplos reais.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <svg class="w-12 h-12 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Liderança e Desenvolvimento</h3>
+                        <p class="text-gray-600">Aprenda a inspirar, engajar e desenvolver talentos, aplicando estilos de liderança eficazes e T&D estratégico.</p>
                     </div>
-                    <div class="benefit__item">
-                        <img src="images/icon-benefit-2.svg" alt="Ícone Benefício 2" class="benefit__icon">
-                        <h3 class="benefit__title">Benefício Chave 2</h3>
-                        <p class="benefit__text">[Descreva o segundo grande benefício que o leitor terá.]</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                         <svg class="w-12 h-12 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Cultura e Clima Positivos</h3>
+                        <p class="text-gray-600">Descubra como construir e manter uma cultura forte e um clima organizacional que promovam bem-estar e produtividade.</p>
                     </div>
-                    <div class="benefit__item">
-                        <img src="images/icon-benefit-3.svg" alt="Ícone Benefício 3" class="benefit__icon">
-                        <h3 class="benefit__title">Benefício Chave 3</h3>
-                        <p class="benefit__text">[Descreva o terceiro grande benefício que o leitor terá.]</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <svg class="w-12 h-12 text-blue-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        <h3 class="text-xl font-semibold mb-2">Mindset de Crescimento</h3>
+                        <p class="text-gray-600">Aplique a psicologia do sucesso para desbloquear o potencial máximo da sua equipe e o seu próprio.</p>
                     </div>
-                </div>
-                <a href="#oferta" class="button button--primary solution__cta js-smooth-scroll">Quero Transformar Minha Realidade!</a>
-            </div>
-        </section>
-
-        <section class="content section">
-            <div class="container content__container">
-                <div class="content__image">
-                     <img src="images/ebook-inside-preview.png" alt="Prévia do conteúdo do e-book" loading="lazy">
-                </div>
-                <div class="content__text">
-                    <h2 class="section__title section__title--left">O que você vai encontrar neste E-book:</h2>
-                    <ul class="content__list">
-                        <li><span class="content__list-icon">✔</span></li>
-                        <li><span class="content__list-icon">✔</span></li>
-                        <li><span class="content__list-icon">✔</span></li>
-                        <li><span class="content__list-icon">✔</span></li>
-                        <li><span class="content__list-icon">✔</span></li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <section class="author section section--highlight">
-            <div class="container author__container">
-                 <div class="author__image">
-                    <img src="images/autor-foto.jpg" alt="Foto de [Nome do Autor]" loading="lazy">
-                </div>
-                <div class="author__text">
-                    <h2 class="section__title section__title--left">Conheça o Autor: [Nome do Autor]</h2>
-                    <p class="section__text"></p>
-                    <p class="section__text">[Adicione mais um parágrafo se necessário, talvez mencionando outras obras ou conquistas relevantes.]</p>
-                    </div>
+        <section id="autor" class="container mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                <img
+                    src="https://placehold.co/300x300/9CA3AF/FFFFFF?text=Danubio+Coelho" /* Placeholder - Substituir pela URL da foto real */
+                    alt="Foto de Danúbio Coelho"
+                    class="rounded-full shadow-lg w-48 h-48 md:w-64 md:h-64 object-cover"
+                    onerror="this.onerror=null; this.src='https://placehold.co/300x300/cccccc/ffffff?text=Foto+Indisponível';"
+                >
+            </div>
+            <div class="md:w-2/3 md:pl-12 text-center md:text-left">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Conheça Danúbio Coelho</h2>
+                <p class="text-lg text-gray-600 mb-4">
+                    Com formação em Engenharia Química e MBA em Gestão de Projetos, Danúbio possui mais de uma década de experiência em planejamento, operações, suprimentos e consultoria, liderando equipes em projetos desafiadores. É o criador do MBA lite, focado em compartilhar conhecimento prático em Gestão de Pessoas, Riscos, Qualidade e Projetos.
+                </p>
+                <p class="text-gray-600 italic">
+                    "Acredito firmemente que, no cenário atual, o verdadeiro diferencial competitivo está nas pessoas e na forma como gerenciamos seu desenvolvimento e engajamento."
+                </p>
+                <div class="mt-6 flex justify-center md:justify-start space-x-4">
+                    <a href="https://www.linkedin.com/in/danubiocoelho/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600 transition duration-300" aria-label="LinkedIn de Danúbio Coelho">
+                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://mbalite.com.br/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-blue-600 transition duration-300" aria-label="Site MBA lite">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </a>
+                     </div>
             </div>
         </section>
 
-        <section class="testimonials section">
-            <div class="container">
-                <h2 class="section__title">O que os leitores estão dizendo:</h2>
-                <div class="testimonials__grid">
-                    <div class="testimonial__item">
-                        <blockquote class="testimonial__quote">"[Depoimento do leitor 1, focando em um resultado ou benefício específico. Mantenha conciso.]"</blockquote>
-                        <p class="testimonial__author">- [Nome do Leitor 1], [Cargo/Cidade ou outra identificação]</p>
-                        </div>
-                     <div class="testimonial__item">
-                        <blockquote class="testimonial__quote">""</blockquote>
-                        <p class="testimonial__author">- [Nome do Leitor 2], [Cargo/Cidade ou outra identificação]</p>
+        <section id="depoimentos" class="bg-blue-50 py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-12">O Que Nossos Leitores Dizem</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <p class="text-gray-600 italic mb-4">"Este e-book mudou minha perspectiva sobre Gestão de Pessoas. As dicas são práticas e fáceis de aplicar. Consegui [Resultado Específico] em poucas semanas!"</p>
+                        <p class="font-semibold text-gray-800">- [Nome do Leitor 1], [Profissão/Cidade]</p>
                     </div>
-                     <div class="testimonial__item">
-                        <blockquote class="testimonial__quote">"[Depoimento do leitor 3. Pode ser mais curto e direto ao ponto.]"</blockquote>
-                        <p class="testimonial__author">- [Nome do Leitor 3], [Cargo/Cidade ou outra identificação]</p>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <p class="text-gray-600 italic mb-4">"Finalmente um material que vai direto ao ponto! Estava perdido(a) com [Problema de Liderança] e o e-book me deu o caminho das pedras. Recomendo!"</p>
+                        <p class="font-semibold text-gray-800">- [Nome do Leitor 2], [Profissão/Cidade]</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                        <p class="text-gray-600 italic mb-4">"Comprei sem muita expectativa, mas me surpreendi. O conteúdo é rico e a didática do autor é excelente. Valeu cada centavo!"</p>
+                        <p class="font-semibold text-gray-800">- [Nome do Leitor 3], [Profissão/Cidade]</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
-        <section id="oferta" class="offer section section--highlight">
-            <div class="container offer__container">
-                <h2 class="section__title">Garanta seu acesso ao E-book Hoje Mesmo!</h2>
-                <div class="offer__details">
-                    <div class="offer__image">
-                        <img src="images/ebook-cover-mockup.png" alt="Capa do E-book" loading="lazy">
+        <section id="comprar" class="bg-white py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center max-w-3xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pronto para Liderar Equipes de Alta Performance?</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Não adie mais seus resultados. Adquira agora o e-book "Gestão de Pessoas para Alta Performance" e tenha acesso imediato ao conhecimento que pode transformar sua liderança e seus resultados.
+                </p>
+                <div class="bg-gray-100 p-8 rounded-lg shadow-lg mb-8">
+                    <p class="text-2xl font-semibold text-gray-700 line-through mb-2">De R$ 97,00</p>
+                    <p class="text-5xl font-bold text-blue-700 mb-4">Por Apenas R$ 47,00</p>
+                    <p class="text-gray-600 mb-6">Oferta especial por tempo limitado!</p>
+                    <div class="text-left mb-6 border-t pt-4">
+                        <h4 class="font-semibold text-lg mb-2 text-gray-800">🎁 Bônus Exclusivos (Exemplo):</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Checklist Prático de Avaliação de Desempenho</li>
+                            <li>Modelo de Plano de Desenvolvimento Individual (PDI)</li>
+                            <li>Guia Rápido de Feedback Construtivo</li>
+                        </ul>
                     </div>
-                    <div class="offer__text">
-                        <p class="section__text"></p>
-                        <p class="offer__price">
-                            <span class="offer__price--label">Por apenas:</span>
-                             <span class="offer__price--value">R$ XX,XX</span>
-                             <span class="offer__price--installments">ou Xx de R$ Z,ZZ</span>
-                        </p>
-                        <p class="section__text">[Liste brevemente o que está incluído na oferta: E-book em PDF, bônus, etc.]</p>
-                        <a href="" class="button button--primary button--large offer__cta">SIM, QUERO COMPRAR O E-BOOK!</a>
-                        <span class="offer__guarantee"></span>
+                    <a href="#link-de-checkout" class="inline-block w-full md:w-auto px-10 py-4 text-xl text-white font-bold rounded-lg btn-gradient shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300">
+                        Quero Comprar Meu E-book Agora!
+                    </a>
+                    <p class="text-sm text-gray-500 mt-4">Compra 100% segura | Plataforma [Nome da Plataforma de Pagamento]</p>
+                </div>
+
+                <div class="mt-12 flex items-center justify-center space-x-4">
+                    <svg class="w-16 h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900">Garantia Incondicional de 7 Dias</h3>
+                        <p class="text-gray-600">Seu risco é zero. Se por qualquer motivo você não ficar satisfeito(a) com o e-book, basta pedir o reembolso em até 7 dias.</p>
                     </div>
                 </div>
-                 </div>
+            </div>
         </section>
 
-        <section class="faq section">
-            <div class="container">
-                <h2 class="section__title">Perguntas Frequentes</h2>
-                <div class="faq__list">
-                    <details class="faq__item">
-                        <summary class="faq__question">Pergunta Frequente 1?</summary>
-                        <p class="faq__answer"></p>
+        <section id="faq" class="bg-gray-100 py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Perguntas Frequentes</h2>
+                <div class="space-y-4">
+                    <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+                        <summary class="font-semibold text-lg text-gray-800">Como receberei o e-book?</summary>
+                        <p class="text-gray-600 mt-2">Após a confirmação do pagamento, você receberá um e-mail com o link para download imediato do e-book em formato PDF.</p>
                     </details>
-                    <details class="faq__item">
-                        <summary class="faq__question">Pergunta Frequente 2?</summary>
-                        <p class="faq__answer"></p>
+                    <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+                        <summary class="font-semibold text-lg text-gray-800">Posso ler em qual dispositivo?</summary>
+                        <p class="text-gray-600 mt-2">O e-book está em formato PDF, compatível com computadores, tablets, smartphones e a maioria dos leitores digitais.</p>
                     </details>
-                    <details class="faq__item">
-                        <summary class="faq__question">Pergunta Frequente 3?</summary>
-                        <p class="faq__answer"></p>
+                    <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+                        <summary class="font-semibold text-lg text-gray-800">Este e-book serve para quem está começando?</summary>
+                        <p class="text-gray-600 mt-2">Sim! O livro aborda desde conceitos fundamentais até práticas avançadas, sendo útil tanto para iniciantes quanto para profissionais experientes em RH e liderança.</p>
                     </details>
-                     <details class="faq__item">
-                        <summary class="faq__question">Pergunta Frequente 4?</summary>
-                        <p class="faq__answer"></p>
+                     <details class="bg-white p-4 rounded-lg shadow cursor-pointer">
+                        <summary class="font-semibold text-lg text-gray-800">Quais formas de pagamento são aceitas?</summary>
+                        <p class="text-gray-600 mt-2">Aceitamos cartão de crédito (principais bandeiras), PIX e boleto bancário através da plataforma [Nome da Plataforma de Pagamento].</p>
                     </details>
                 </div>
             </div>
@@ -160,18 +197,21 @@
 
     </main>
 
-    <footer class="footer">
-        <div class="container footer__container">
-            <p>&copy; <span id="current-year"></span>. Todos os direitos reservados.</p>
-            <nav class="footer__nav">
-                <a href="[Link Política de Privacidade]" target="_blank">Política de Privacidade</a> |
-                <a href="" target="_blank">Termos de Uso</a> |
-                <a href="[Link Contato]" target="_blank">Contato</a>
-            </nav>
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-2">&copy; 2025 Danúbio Coelho | MBA lite. Todos os direitos reservados.</p>
+            <div class="space-x-4">
+                <a href="#politica-privacidade" class="hover:text-white text-sm">Política de Privacidade</a>
+                <a href="#termos-uso" class="hover:text-white text-sm">Termos de Uso</a>
+                <a href="mailto:dan@mbalite.com.br" class="hover:text-white text-sm">Contato (dan@mbalite.com.br)</a>
+            </div>
+             <p class="text-xs text-gray-500 mt-4">Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook. Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site.</p>
         </div>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script>
+        console.log("Landing Page Carregada - Gestão de Pessoas para Alta Performance");
+    </script>
 
 </body>
 </html>
