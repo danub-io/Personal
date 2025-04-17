@@ -86,12 +86,25 @@
         .btn-primary:hover {
             background: linear-gradient(135deg, #00b8d4, #00a3b8); /* primary-dark to primary-darkest */
             transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 224, 255, 0.25); /* Add subtle glow on hover */
         }
+        .btn-secondary {
+             transition: all 0.3s ease;
+             border-color: #00E0FF;
+             color: #00E0FF;
+        }
+         .btn-secondary:hover {
+             background-color: #00E0FF;
+             color: #101214; /* text-on-primary */
+             transform: translateY(-3px);
+             box-shadow: 0 4px 10px rgba(0, 224, 255, 0.25);
+         }
 
-        /* Skill icon hover */
+
+        /* Skill icon hover - Enhanced */
         .skill-icon-wrapper:hover svg {
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 8px rgba(0, 224, 255, 0.5));
+            transform: scale(1.15) rotate(5deg); /* Add slight rotation */
+            filter: drop-shadow(0 0 10px rgba(0, 224, 255, 0.6)); /* Brighter glow */
         }
         .skill-icon-wrapper svg {
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -108,29 +121,58 @@
         }
 
         /* Section Title Underline */
-         h2::after {
+         h2.section-title::after { /* Changed selector to class for more control */
             content: '';
             display: block;
             width: 60px;
             height: 3px;
             background-color: #00E0FF; /* primary */
-            margin: 12px auto 0; /* Center the line */
+            margin-top: 12px; /* Spacing */
         }
-        /* Left align for specific sections */
-        #skills h2::after, #experience h2::after, #publications h2::after, #mbalite h2::after, #contact h2::after {
-             margin-left: 0;
-             margin-right: auto;
-        }
-        /* Center align for specific sections */
-         #about h2::after {
+        h2.section-title.text-center::after {
              margin-left: auto;
-             margin-right: auto;
-         }
+             margin-right: auto; /* Center the line */
+        }
+         h2.section-title.text-left::after {
+             margin-left: 0;
+             margin-right: auto; /* Left align the line */
+        }
+
 
         /* Ensure icons scale correctly */
         svg {
              display: inline-block;
              vertical-align: middle;
+        }
+
+        /* Animated Background for Hero Section */
+        #home {
+            position: relative; /* Needed for pseudo-element */
+            overflow: hidden; /* Prevent overflow */
+        }
+
+        #home::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1; /* Behind the content */
+            background: radial-gradient(circle, rgba(0, 224, 255, 0.05) 0%, rgba(0, 224, 255, 0) 50%),
+                        radial-gradient(circle at top left, rgba(0, 184, 212, 0.08) 0%, rgba(0, 184, 212, 0) 40%),
+                        radial-gradient(circle at bottom right, rgba(0, 163, 184, 0.07) 0%, rgba(0, 163, 184, 0) 45%);
+            animation: subtleRotate 45s linear infinite;
+            opacity: 0.7; /* Adjust opacity */
+        }
+
+        @keyframes subtleRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
     </style>
@@ -156,7 +198,7 @@
         </div>
     </header>
 
-    <div id="mobile-menu" class="md:hidden fixed top-0 left-0 w-64 h-full bg-bg-surface shadow-lg p-6 z-40 transform -translate-x-full">
+    <div id="mobile-menu" class="md:hidden fixed top-0 left-0 w-64 h-full bg-bg-surface shadow-lg p-6 z-40 transform -translate-x-full hidden">
          <div class="flex justify-between items-center mb-8">
              <span class="text-xl font-bold text-text-title">Menu</span>
              <button id="close-menu-btn" class="text-text-body hover:text-primary focus:outline-none">
@@ -177,29 +219,28 @@
 
 
     <main>
-        <section id="home" class="scroll-target min-h-screen flex items-center justify-center text-center pt-16 pb-16 px-4 md:px-6 lg:px-8" data-aos="fade-in">
-            <div class="max-w-4xl mx-auto">
-                 <img src="https://lh3.googleusercontent.com/a/ACg8ocJ5e83n009p3-7x3r_lW12b-56W5J8X5q9y4t7J8n5v=s96-c" alt="Foto de Danúbio Coelho" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-primary shadow-lg" data-aos="zoom-in" data-aos-delay="100">
+        <section id="home" class="scroll-target min-h-screen flex items-center justify-center text-center pt-24 pb-16 px-4 md:px-6 lg:px-8" data-aos="fade-in">
+            <div class="max-w-4xl mx-auto relative z-10"> <img src="https://lh3.googleusercontent.com/a/ACg8ocJ5e83n009p3-7x3r_lW12b-56W5J8X5q9y4t7J8n5v=s96-c" alt="Foto de Danúbio Coelho" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 border-4 border-primary shadow-lg" data-aos="zoom-in" data-aos-delay="100">
 
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text-title mb-4" data-aos="fade-up" data-aos-delay="200">Danúbio Coelho</h1>
-                <p class="text-xl md:text-2xl text-primary mb-8" data-aos="fade-up" data-aos-delay="300">Engenheiro Químico | Gestor de Projetos | Founder MBA Lite</p>
-                <p class="text-lg md:text-xl text-text-body max-w-2xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="400">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text-title mb-5" data-aos="fade-up" data-aos-delay="200">Danúbio Coelho</h1>
+                <p class="text-xl md:text-2xl text-primary mb-10" data-aos="fade-up" data-aos-delay="300">Engenheiro Químico | Gestor de Projetos | Founder MBA Lite</p>
+                <p class="text-lg md:text-xl text-text-body max-w-3xl mx-auto mb-12 leading-relaxed" data-aos="fade-up" data-aos-delay="400">
                     Apaixonado por otimização de processos, gestão estratégica e desenvolvimento humano para alcançar resultados de alto impacto.
                 </p>
-                <div class="space-x-4" data-aos="fade-up" data-aos-delay="500">
-                    <a href="#contact" class="btn-primary text-text-on-primary font-semibold py-3 px-8 rounded-btn text-lg">Entre em Contato</a>
-                    <a href="#about" class="text-primary hover:text-primary-dark font-semibold py-3 px-8 rounded-btn text-lg border-2 border-primary hover:bg-primary hover:text-text-on-primary transition duration-300">Saiba Mais</a>
+                <div class="space-y-4 sm:space-y-0 sm:space-x-4" data-aos="fade-up" data-aos-delay="500">
+                    <a href="#contact" class="btn-primary text-text-on-primary font-semibold py-3 px-8 rounded-btn text-lg inline-block w-full sm:w-auto">Entre em Contato</a>
+                    <a href="#about" class="btn-secondary font-semibold py-3 px-8 rounded-btn text-lg border-2 inline-block w-full sm:w-auto">Saiba Mais</a>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="scroll-target py-20 px-4 md:px-6 lg:px-8 bg-bg-surface" data-aos="fade-up">
+        <section id="about" class="scroll-target py-24 px-4 md:px-6 lg:px-8 bg-bg-surface" data-aos="fade-up">
             <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-12">Sobre Mim</h2>
-                <p class="text-lg text-text-body mb-6 leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-16 section-title text-center">Sobre Mim</h2>
+                <p class="text-lg text-text-body mb-8 leading-relaxed">
                     Minha jornada profissional começou na Engenharia Química, onde aprendi a importância da análise, dos processos e da busca pela eficiência. Complementei essa base com um MBA em Gestão de Projetos e, ao longo dos anos, atuei em diversas frentes: planejamento, operações, suprimentos, consultoria e liderança de equipes em projetos desafiadores.
                 </p>
-                <p class="text-lg text-text-body mb-6 leading-relaxed">
+                <p class="text-lg text-text-body mb-8 leading-relaxed">
                     Acredito firmemente que o verdadeiro diferencial competitivo está nas pessoas. Essa convicção, somada à paixão por compartilhar conhecimento prático, me motivou a criar o <a href="https://mbalite.com.br/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-dark underline font-medium">MBA Lite</a>, focado em gestão moderna, e a escrever o livro "Gestão de Pessoas para Alta Performance".
                 </p>
                  <p class="text-lg text-text-body leading-relaxed">
@@ -208,147 +249,140 @@
             </div>
         </section>
 
-        <section id="skills" class="scroll-target py-20 px-4 md:px-6 lg:px-8">
+        <section id="skills" class="scroll-target py-24 px-4 md:px-6 lg:px-8">
             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-12 text-left">Habilidades</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-16 section-title text-left">Habilidades</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
                     <div data-aos="fade-up">
-                        <h3 class="text-2xl font-semibold text-primary mb-4">Gestão de Projetos & Processos</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M19 19L5 5M9 3H3v6"></path><path d="M15 21h6v-6M9 21H3v-6"></path></svg></span>PMBOK, Scrum, Kanban</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>Lean, Six Sigma (Green Belt), Kaizen</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20l6-6M18 20l-6-6M12 14V8M6 8l6-6M18 8l-6-6"></path></svg></span>Otimização de Processos (PCP)</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="12" y1="2" y2="22"></line><line x1="17" x2="7" y1="2" y2="22"></line><line x1="7" x2="17" y1="2" y2="22"></line></svg></span>Análise de Riscos (ISO 31000, COSO)</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>Gestão da Qualidade (ISO 9001)</li>
+                        <h3 class="text-2xl font-semibold text-primary mb-5">Gestão de Projetos & Processos</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M19 19L5 5M9 3H3v6"></path><path d="M15 21h6v-6M9 21H3v-6"></path></svg></span>PMBOK, Scrum, Kanban</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>Lean, Six Sigma (Green Belt), Kaizen</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20l6-6M18 20l-6-6M12 14V8M6 8l6-6M18 8l-6-6"></path></svg></span>Otimização de Processos (PCP)</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="12" y1="2" y2="22"></line><line x1="17" x2="7" y1="2" y2="22"></line><line x1="7" x2="17" y1="2" y2="22"></line></svg></span>Análise de Riscos (ISO 31000, COSO)</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>Gestão da Qualidade (ISO 9001)</li>
                         </ul>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-semibold text-primary mb-4">Ferramentas de Gestão</h3>
-                         <ul class="space-y-3">
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg></span>ClickUp, Jira, Trello, Monday, Asana</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></span>MS Project, Oracle Primavera</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg></span>Excel Avançado, Miro</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="m21.07 4.93-1.41 1.41"></path><path d="m6.34 17.66-1.41 1.41"></path></svg></span>Zapier, Integrately (Automação)</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg></span>SAP MM, Totvs, Sankhya (ERP)</li>
+                        <h3 class="text-2xl font-semibold text-primary mb-5">Ferramentas de Gestão</h3>
+                         <ul class="space-y-4">
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg></span>ClickUp, Jira, Trello, Monday, Asana</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></span>MS Project, Oracle Primavera</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg></span>Excel Avançado, Miro</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="m21.07 4.93-1.41 1.41"></path><path d="m6.34 17.66-1.41 1.41"></path></svg></span>Zapier, Integrately (Automação)</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg></span>SAP MM, Totvs, Sankhya (ERP)</li>
                         </ul>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-semibold text-primary mb-4">Liderança & Desenvolvimento</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Gestão de Pessoas e Equipes</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Liderança Situacional e Servidora</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>Comunicação e Oratória</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span>Inteligência Artificial para Gestores</li>
-                            <li class="flex items-center"><span class="skill-icon-wrapper mr-3 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.04 3 5.5l7 7Z"></path></svg></span>Recrutamento e Seleção</li>
+                        <h3 class="text-2xl font-semibold text-primary mb-5">Liderança & Desenvolvimento</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Gestão de Pessoas e Equipes</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Liderança Situacional e Servidora</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>Comunicação e Oratória</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span>Inteligência Artificial para Gestores</li>
+                            <li class="flex items-center"><span class="skill-icon-wrapper mr-4 text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.04 3 5.5l7 7Z"></path></svg></span>Recrutamento e Seleção</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="scroll-target py-20 px-4 md:px-6 lg:px-8 bg-bg-surface">
+        <section id="experience" class="scroll-target py-24 px-4 md:px-6 lg:px-8 bg-bg-surface">
             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-12 text-left">Experiência em Destaque</h2>
-                <div class="space-y-12">
-                    <div class="flex flex-col md:flex-row gap-6" data-aos="fade-up">
-                        <div class="md:w-1/4 text-left md:text-right">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-16 section-title text-left">Experiência em Destaque</h2>
+                <div class="space-y-16"> <div class="flex flex-col md:flex-row gap-8" data-aos="fade-up"> <div class="md:w-1/4 text-left md:text-right flex-shrink-0">
                             <h3 class="text-xl font-semibold text-primary mb-1">Gerente de Projetos</h3>
                             <p class="text-sm text-text-body">Vila Mundo / Domebambu / Wedome</p>
-                            <p class="text-sm text-text-body">Brasília, DF | Ago 2024 - Presente</p>
+                            <p class="text-sm text-text-body opacity-80">Brasília, DF | Ago 2024 - Presente</p>
                         </div>
-                        <div class="md:w-3/4 border-l-2 border-border-color pl-6">
-                            <p>Implementação de ClickUp, redesenho de fluxos de trabalho, liderança de reuniões Lean no chão de fábrica e gestão de compras, suprimentos e logística para otimizar a produtividade e colaboração.</p>
+                        <div class="md:w-3/4 border-l-2 border-border-color pl-8"> <p class="leading-relaxed">Implementação de ClickUp, redesenho de fluxos de trabalho, liderança de reuniões Lean no chão de fábrica e gestão de compras, suprimentos e logística para otimizar a produtividade e colaboração.</p>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row gap-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="md:w-1/4 text-left md:text-right">
+                    <div class="flex flex-col md:flex-row gap-8" data-aos="fade-up" data-aos-delay="100">
+                        <div class="md:w-1/4 text-left md:text-right flex-shrink-0">
                             <h3 class="text-xl font-semibold text-primary mb-1">Founder</h3>
                             <p class="text-sm text-text-body">MBA Lite</p>
-                            <p class="text-sm text-text-body">Brasília, DF | Mar 2025 - Presente</p>
+                            <p class="text-sm text-text-body opacity-80">Brasília, DF | Mar 2025 - Presente</p>
                         </div>
-                        <div class="md:w-3/4 border-l-2 border-border-color pl-6">
-                            <p>Criação de experiência completa de aprendizado online, desde o planejamento estratégico até o desenvolvimento de módulos (Gestão de Pessoas, Riscos, Qualidade, Projetos), ebooks, videoaulas e website.</p>
+                        <div class="md:w-3/4 border-l-2 border-border-color pl-8">
+                            <p class="leading-relaxed">Criação de experiência completa de aprendizado online, desde o planejamento estratégico até o desenvolvimento de módulos (Gestão de Pessoas, Riscos, Qualidade, Projetos), ebooks, videoaulas e website.</p>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row gap-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="md:w-1/4 text-left md:text-right">
+                    <div class="flex flex-col md:flex-row gap-8" data-aos="fade-up" data-aos-delay="200">
+                        <div class="md:w-1/4 text-left md:text-right flex-shrink-0">
                             <h3 class="text-xl font-semibold text-primary mb-1">Engenheiro de Projetos</h3>
                             <p class="text-sm text-text-body">Petrobras</p>
-                            <p class="text-sm text-text-body">Rio Grande, RS | Mai 2013 - Jun 2015</p>
+                            <p class="text-sm text-text-body opacity-80">Rio Grande, RS | Mai 2013 - Jun 2015</p>
                         </div>
-                        <div class="md:w-3/4 border-l-2 border-border-color pl-6">
-                            <p>Atuação em projetos de construção naval (FPSOs), fiscalização de subcontratadas, acompanhamento de cronogramas, orçamentos e processos de procurement, garantindo conformidade e qualidade.</p>
+                        <div class="md:w-3/4 border-l-2 border-border-color pl-8">
+                            <p class="leading-relaxed">Atuação em projetos de construção naval (FPSOs), fiscalização de subcontratadas, acompanhamento de cronogramas, orçamentos e processos de procurement, garantindo conformidade e qualidade.</p>
                         </div>
                     </div>
-                     <div class="flex flex-col md:flex-row gap-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="md:w-1/4 text-left md:text-right">
+                     <div class="flex flex-col md:flex-row gap-8" data-aos="fade-up" data-aos-delay="300">
+                        <div class="md:w-1/4 text-left md:text-right flex-shrink-0">
                             <h3 class="text-xl font-semibold text-primary mb-1">Engenheiro de Projetos</h3>
                             <p class="text-sm text-text-body">Autônomo</p>
-                            <p class="text-sm text-text-body">Pelotas, RS | Jun 2015 - Mar 2023</p>
+                            <p class="text-sm text-text-body opacity-80">Pelotas, RS | Jun 2015 - Mar 2023</p>
                         </div>
-                        <div class="md:w-3/4 border-l-2 border-border-color pl-6">
-                            <p>Reestruturação financeira para startup (Conta Azul), otimização de suprimentos em refinaria, coordenação técnica/comercial em projetos de fertilizantes e garantia de qualidade de software para grandes empresas de TI (Meta, Microsoft, Google).</p>
+                        <div class="md:w-3/4 border-l-2 border-border-color pl-8">
+                            <p class="leading-relaxed">Reestruturação financeira para startup (Conta Azul), otimização de suprimentos em refinaria, coordenação técnica/comercial em projetos de fertilizantes e garantia de qualidade de software para grandes empresas de TI (Meta, Microsoft, Google).</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="publications" class="scroll-target py-20 px-4 md:px-6 lg:px-8">
+        <section id="publications" class="scroll-target py-24 px-4 md:px-6 lg:px-8">
             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-12 text-left">Publicações</h2>
-                <div class="bg-bg-surface rounded-card p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 card-hover-effect border border-transparent" data-aos="fade-up">
-                    <div class="flex-shrink-0 w-48 md:w-56">
-                        <img src="https://placehold.co/300x450/181B1D/FFFFFF?text=Gest%C3%A3o+de+Pessoas" alt="Capa do Livro Gestão de Pessoas para Alta Performance" class="rounded-md shadow-lg w-full">
-                    </div>
-                    <div class="text-left">
-                        <h3 class="text-2xl md:text-3xl font-semibold text-primary mb-3">Gestão de Pessoas para Alta Performance</h3>
-                        <p class="text-lg text-text-body mb-4">Desvendando o Potencial Humano para Resultados Extraordinários</p>
-                        <p class="text-text-body mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-16 section-title text-left">Publicações</h2>
+                <div class="bg-bg-surface rounded-card p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 card-hover-effect border border-transparent" data-aos="fade-up"> <div class="flex-shrink-0 w-52 md:w-64"> <img src="https://placehold.co/400x600/181B1D/FFFFFF?text=Gest%C3%A3o+de+Pessoas" alt="Capa do Livro Gestão de Pessoas para Alta Performance" class="rounded-lg shadow-lg w-full"
+                              onerror="this.onerror=null; this.src='https://placehold.co/400x600/181B1D/a5a5a5?text=Capa+Indispon%C3%ADvel';"> </div>
+                    <div class="text-left flex-grow"> <h3 class="text-2xl md:text-3xl font-semibold text-primary mb-4">Gestão de Pessoas para Alta Performance</h3>
+                        <p class="text-lg text-text-body opacity-90 mb-5">Desvendando o Potencial Humano para Resultados Extraordinários</p>
+                        <p class="text-text-body mb-8 leading-relaxed">
                             Um guia abrangente e prático para líderes e profissionais de RH que buscam dominar a arte e a ciência de gerenciar pessoas na contemporaneidade. Explore pilares essenciais como atração e desenvolvimento de talentos, liderança inspiradora, cultura organizacional e o mindset necessário para desbloquear o potencial máximo das equipes.
                         </p>
-                        <a href="https://mbalite.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary text-text-on-primary font-semibold py-2 px-6 rounded-btn inline-block">Saiba Mais (MBA Lite)</a>
-                        </div>
+                        <div class="space-x-4">
+                            <a href="https://mbalite.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary text-text-on-primary font-semibold py-2 px-6 rounded-btn inline-block">Saiba Mais (MBA Lite)</a>
+                            </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-         <section id="mbalite" class="scroll-target py-20 px-4 md:px-6 lg:px-8 bg-bg-surface">
+         <section id="mbalite" class="scroll-target py-24 px-4 md:px-6 lg:px-8 bg-bg-surface">
             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-12 text-left">Projeto MBA Lite</h2>
-                <div class="flex flex-col lg:flex-row gap-8 items-center">
-                    <div class="lg:w-2/3 text-left" data-aos="fade-right">
-                        <p class="text-lg text-text-body mb-6 leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-16 section-title text-left">Projeto MBA Lite</h2>
+                <div class="flex flex-col lg:flex-row gap-12 items-center"> <div class="lg:w-2/3 text-left" data-aos="fade-right">
+                        <p class="text-lg text-text-body mb-8 leading-relaxed">
                             O MBA Lite nasceu da minha paixão por compartilhar conhecimento prático e aplicável em gestão moderna. É mais do que um curso online; é uma experiência de aprendizado completa, projetada para equipar profissionais e líderes com as ferramentas essenciais para navegar no complexo cenário de negócios atual.
                         </p>
-                        <p class="text-lg text-text-body mb-6 leading-relaxed">
+                        <p class="text-lg text-text-body mb-8 leading-relaxed">
                             Com módulos aprofundados em Gestão de Pessoas, Riscos, Qualidade, Projetos (tradicionais e ágeis), Ferramentas de Gestão e aplicação de Inteligência Artificial, o MBA Lite oferece um currículo conciso e estratégico para impulsionar sua carreira e seus resultados.
                         </p>
                         <a href="https://mbalite.com.br/" target="_blank" rel="noopener noreferrer" class="btn-primary text-text-on-primary font-semibold py-3 px-8 rounded-btn text-lg inline-block">Conheça o MBA Lite</a>
                     </div>
-                    <div class="lg:w-1/3 grid grid-cols-2 gap-4" data-aos="fade-left" data-aos-delay="100">
-                        <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+                    <div class="lg:w-1/3 grid grid-cols-2 gap-5" data-aos="fade-left" data-aos-delay="100"> <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square"> <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
                             <span class="text-sm font-medium text-text-body">Pessoas</span>
                         </div>
-                         <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
+                         <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square">
+                             <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="m21.73 18-8-14a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                             <span class="text-sm font-medium text-text-body">Riscos</span>
                         </div>
-                         <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>
+                         <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square">
+                             <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>
                             <span class="text-sm font-medium text-text-body">Qualidade</span>
                         </div>
-                         <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M15 3h6v6M19 19L5 5M9 3H3v6"></path><path d="M15 21h6v-6M9 21H3v-6"></path></svg></span>
+                         <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square">
+                             <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M15 3h6v6M19 19L5 5M9 3H3v6"></path><path d="M15 21h6v-6M9 21H3v-6"></path></svg></span>
                             <span class="text-sm font-medium text-text-body">Projetos</span>
                         </div>
-                         <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+                         <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square">
+                             <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
                             <span class="text-sm font-medium text-text-body">Ferramentas</span>
                         </div>
-                         <div class="bg-bg-main p-4 rounded-lg text-center card-hover-effect border border-transparent">
-                             <span class="text-primary text-3xl mb-2 block"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span>
+                         <div class="bg-bg-main p-5 rounded-lg text-center card-hover-effect border border-transparent flex flex-col items-center justify-center aspect-square">
+                             <span class="text-primary text-4xl mb-3 block"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span>
                             <span class="text-sm font-medium text-text-body">IA</span>
                         </div>
                     </div>
@@ -356,19 +390,19 @@
             </div>
         </section>
 
-        <section id="contact" class="scroll-target py-20 px-4 md:px-6 lg:px-8">
+        <section id="contact" class="scroll-target py-24 px-4 md:px-6 lg:px-8">
             <div class="container mx-auto max-w-3xl text-center">
-                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-8">Entre em Contato</h2>
-                <p class="text-lg text-text-body mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-title mb-10 section-title text-center">Entre em Contato</h2>
+                <p class="text-lg text-text-body mb-12 leading-relaxed">
                     Estou sempre aberto a novas conexões, oportunidades e discussões sobre gestão, projetos e inovação. Sinta-se à vontade para entrar em contato.
                 </p>
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-8">
-                    <a href="mailto:danubio.coelho@gmail.com" class="flex items-center text-lg text-text-body hover:text-primary transition duration-300" data-aos="fade-up">
-                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-10">
+                    <a href="mailto:danubio.coelho@gmail.com" class="flex items-center text-lg text-text-body hover:text-primary transition duration-300 group" data-aos="fade-up">
+                        <svg class="w-7 h-7 mr-3 text-primary group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         danubio.coelho@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/danubiocoelho/" target="_blank" rel="noopener noreferrer" class="flex items-center text-lg text-text-body hover:text-primary transition duration-300" data-aos="fade-up" data-aos-delay="100">
-                         <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    <a href="https://www.linkedin.com/in/danubiocoelho/" target="_blank" rel="noopener noreferrer" class="flex items-center text-lg text-text-body hover:text-primary transition duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                         <svg class="w-7 h-7 mr-3 text-primary group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
                         LinkedIn Profile
                     </a>
                 </div>
@@ -376,10 +410,9 @@
         </section>
     </main>
 
-    <footer class="bg-bg-main py-8 border-t border-border-color">
-        <div class="container mx-auto text-center text-text-body">
-            <p>&copy; <span id="current-year"></span> Danúbio Coelho. Todos os direitos reservados.</p>
-             <p class="text-sm mt-2">Brasília - DF, Brasil</p>
+    <footer class="bg-bg-main py-10 border-t border-border-color mt-16"> <div class="container mx-auto text-center text-text-body">
+            <p class="opacity-80">© <span id="current-year"></span> Danúbio Coelho. Todos os direitos reservados.</p>
+             <p class="text-sm mt-2 opacity-70">Brasília - DF, Brasil</p>
         </div>
     </footer>
 
@@ -415,6 +448,7 @@
                  // Small delay to allow transition before removing 'hidden' completely if needed
                 setTimeout(() => {
                    if (mobileMenu.classList.contains('-translate-x-full')) { // Check if still closed
+                       // Keep -translate-x-full, but add hidden for accessibility/tabbing
                        mobileMenu.classList.add('hidden');
                    }
                 }, 300); // Match transition duration
@@ -447,9 +481,12 @@
             if (header) {
                 window.addEventListener('scroll', () => {
                     if (window.scrollY > 50) {
-                        header.classList.add('shadow-md'); // Add a subtle shadow class if needed
+                        // Using Tailwind class for consistency if preferred
+                        // header.classList.add('shadow-lg');
+                        header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.8)'; // Custom shadow
                     } else {
-                        header.classList.remove('shadow-md');
+                        // header.classList.remove('shadow-lg');
+                        header.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.7)'; // Back to original
                     }
                 });
             }
